@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import "./App.css"
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
+import { Github, Linkedin, Twitter, Mail, ArrowRight } from "lucide-react"
 
 export default function App() {
   const canvasRef = useRef(null)
   const appRef = useRef(null)
+  const [showMobileGate, setShowMobileGate] = useState(false)
 
   const randomColors = (count) =>
     new Array(count).fill(0).map(
@@ -16,6 +17,12 @@ export default function App() {
     )
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768
+    if (isMobile) {
+      setShowMobileGate(true)
+      return
+    }
+
     const timer = setTimeout(() => {
       import(
         "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js"
@@ -49,12 +56,10 @@ export default function App() {
 
   return (
     <div className="app" onClick={handleClick}>
-      {/* Background */}
       <canvas ref={canvasRef} className="tubes-canvas" />
 
-      {/* UI */}
+      {/* MAIN UI */}
       <div className="ui">
-        {/* Navbar */}
         <nav className="nav">
           <span className="logo">ABHIJIT SINGH</span>
           <div className="nav-links">
@@ -64,7 +69,6 @@ export default function App() {
           </div>
         </nav>
 
-        {/* Hero */}
         <main className="hero">
           <span className="role">FULL-STACK DEVELOPER</span>
 
@@ -81,32 +85,44 @@ export default function App() {
           </p>
 
           <div className="socials">
-            <a href="https://github.com/abhijitsingh003" target="_blank">
-              <Github size={18} />
-            </a>
-            <a href="https://www.linkedin.com/in/abhijitsingh003" target="_blank">
-              <Linkedin size={18} />
-            </a>
-            <a href="https://twitter.com/your-username" target="_blank">
-              <Twitter size={18} />
-            </a>
-            <a href="mailto:abhijit.singh.2k21@gmail.com">
-              <Mail size={18} />
-            </a>
+            <a><Github size={18} /></a>
+            <a><Linkedin size={18} /></a>
+            <a><Twitter size={18} /></a>
+            <a><Mail size={18} /></a>
           </div>
         </main>
 
-        {/* Scroll */}
         <div className="scroll">
           <span>SCROLL</span>
           <span className="arrow">↓</span>
         </div>
 
-        {/* Bottom-right hint (aligned with nav links) */}
         <div className="color-hint">
           Click anywhere to change colors
         </div>
       </div>
+
+      {/* MOBILE POPUP */}
+      {showMobileGate && (
+        <div className="mobile-gate">
+          <div className="mobile-gate-box">
+            <p>
+              Best experienced on a laptop<br />
+              for richer visuals and interactions.
+            </p>
+
+            <button
+              className="continue-btn"
+              onClick={(e) => {
+                e.stopPropagation()
+                setShowMobileGate(false)
+              }}
+            >
+              Continue anyway <ArrowRight size={14} />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -163,3 +163,41 @@ body {
   letter-spacing: 0.04em;
   pointer-events: none;
 }
+/* MOBILE EXPERIENCE GATE */
+.mobile-gate {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-gate-box {
+  max-width: 320px;
+  padding: 32px;
+  text-align: center;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.continue-btn {
+  margin-top: 20px;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.continue-btn:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
