@@ -1,0 +1,165 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+.app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  cursor: pointer;
+}
+
+/* BACKGROUND CANVAS */
+.tubes-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* UI LAYER */
+.ui {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+/* NAVBAR */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 64px;
+}
+
+.logo {
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+/* HERO */
+.hero {
+  min-height: calc(100vh - 120px);
+  padding: 0 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 900px;
+}
+
+.role {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  color: #9ca3af;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.hero p {
+  max-width: 520px;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+/* SOCIALS */
+.socials {
+  display: flex;
+  gap: 24px;
+}
+
+.socials a svg {
+  color: #9ca3af;
+  opacity: 0.8;
+  transition: transform 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+}
+
+.socials a:hover svg {
+  color: #ffffff;
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+/* SCROLL */
+.scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: #9ca3af;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.scroll .arrow {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+  animation: bounce 1.4s ease-in-out infinite;
+}
+
+/* BOUNCE */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+/* BOTTOM-RIGHT HINT (ALIGNED WITH NAV LINKS) */
+.color-hint {
+  position: absolute;
+  bottom: 32px;
+  right: 64px; /* 👈 SAME AS NAV PADDING */
+  font-size: 0.7rem;
+  color: #9ca3af;
+  opacity: 0.6;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
