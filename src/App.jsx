@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import "./App.css"
+import "./index.css"
 import { Github, Linkedin, Twitter, Mail, ArrowRight } from "lucide-react"
 
 export default function App() {
@@ -55,7 +55,7 @@ export default function App() {
       {/* MAIN UI */}
       <div className="ui">
         <nav className="nav">
-          <span className="logo">ABHIJIT SINGH</span>
+          <span className="logo">ABHIJIT</span>
           <div className="nav-links">
             <a>About</a>
             <a>Work</a>
@@ -64,27 +64,35 @@ export default function App() {
         </nav>
 
         <main className="hero">
-          <span className="role"> UI/UX DESIGNER | DEVELOPER</span>
+          <span className="role">UI/UX DESIGNER | DEVELOPER</span>
 
           <h1>
             Hi :) <br />
-            I'm Abhijit <br />
-            
+            I&apos;m Abhijit
           </h1>
 
           <p>
             I love turning messy ideas into clean, simple design
-            that just make sense.<br/> Drawing inspiration from
-            how people interact with everyday objects,<br/> I find
-            the clues needed to solve complex usability problems.<br/>
+            that just makes sense.<br />
+            Drawing inspiration from how people interact with
+            everyday objects, I find the clues needed to solve
+            complex usability problems.<br />
             Open to freelance projects and internships.
           </p>
 
           <div className="socials">
-            <a href="https://github.com/abhijitsingh003"><Github size={18} /></a>
-            <a href="https://www.linkedin.com/in/abhijitsingh003"><Linkedin size={18} /></a>
-            <a href="https://twitter.com/"><Twitter size={18} /></a>
-            <a href="mailto:abhijit.singh.2k21@gmail.com"><Mail size={18} /></a>
+            <a href="https://github.com/abhijitsingh003" target="_blank">
+              <Github size={18} />
+            </a>
+            <a href="https://www.linkedin.com/in/abhijitsingh003" target="_blank">
+              <Linkedin size={18} />
+            </a>
+            <a href="https://twitter.com/" target="_blank">
+              <Twitter size={18} />
+            </a>
+            <a href="mailto:abhijit.singh.2k21@gmail.com">
+              <Mail size={18} />
+            </a>
           </div>
         </main>
 
@@ -98,12 +106,13 @@ export default function App() {
         </div>
       </div>
 
-      {/* MOBILE POPUP (CSS controls visibility) */}
+      {/* MOBILE EXPERIENCE POPUP */}
       {!dismissGate && (
         <div className="mobile-gate">
           <div className="mobile-gate-box">
             <p>
-              Best experienced on a laptop<br />
+              Best experienced on a laptop
+              <br />
               for richer visuals and interactions.
             </p>
 

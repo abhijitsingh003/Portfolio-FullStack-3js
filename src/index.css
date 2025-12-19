@@ -139,7 +139,6 @@ body {
   animation: bounce 1.4s ease-in-out infinite;
 }
 
-/* BOUNCE */
 @keyframes bounce {
   0%,
   100% {
@@ -168,17 +167,17 @@ body {
 /* MOBILE EXPERIENCE POPUP GATE */
 /* ============================= */
 
-/* Hidden by default (desktop) */
+/* Hidden on desktop */
 .mobile-gate {
   display: none;
 }
 
-/* Force popup on mobile */
+/* Visible ONLY on mobile */
 @media (max-width: 768px) {
   .mobile-gate {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.88);
     backdrop-filter: blur(6px);
     z-index: 9999;
     display: flex;
