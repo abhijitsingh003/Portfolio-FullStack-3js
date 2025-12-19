@@ -50,8 +50,22 @@ export default function App() {
     }
   }, [])
 
+  /* ------------------------------
+     COLOR CHANGE ON INTERACTION
+  -------------------------------- */
+  const randomColors = (count) =>
+    Array.from({ length: count }, () =>
+      "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")
+    )
+
+  const handleInteraction = () => {
+    if (!appRef.current) return
+    appRef.current.tubes.setColors(randomColors(3))
+    appRef.current.tubes.setLightsColors(randomColors(4))
+  }
+
   return (
-    <div className="app">
+    <div className="app" onPointerDown={handleInteraction}>
       <canvas ref={canvasRef} className="tubes-canvas" />
 
       {/* MAIN UI */}
@@ -74,9 +88,10 @@ export default function App() {
           </h1>
 
           <p>
-            I love turning messy ideas into clean, simple experiences
-            that just make sense. Inspired by everyday interactions,
-            I look for small clues that solve bigger usability problems.
+            I love turning messy ideas into clean, simple designs until they just click.
+            <br />
+            By observing how people interact with everyday&nbsp;objects,
+            I find meaningful clues to solve complex usability problems.
             <br />
             Open to freelance projects and internships.
           </p>
@@ -95,7 +110,7 @@ export default function App() {
         </div>
 
         <div className="color-hint">
-          Click to explore visual variations
+          Tap / click anywhere to change colors
         </div>
       </div>
 
@@ -104,14 +119,14 @@ export default function App() {
         <div className="mobile-gate">
           <div className="mobile-gate-box">
             <p>
-              This experience isn’t fully optimized for mobile yet.
+              This experience isn't fully optimized for mobile yet.
               For the best visuals and interactions, try opening it
               on a laptop or larger screen.
             </p>
 
             <button
               className="continue-btn"
-              onClick={(e) => {
+              onPointerDown={(e) => {
                 e.stopPropagation()
                 setDismissGate(true)
               }}
