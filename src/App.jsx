@@ -17,7 +17,15 @@ export default function App() {
     )
 
   useEffect(() => {
-    const isMobile = window.innerWidth < 768
+    const isTouchDevice =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0
+
+    const isMobileUA = /Android|iPhone|iPad|iPod/i.test(
+      navigator.userAgent
+    )
+
+    const isMobile = isTouchDevice && isMobileUA
+
     if (isMobile) {
       setShowMobileGate(true)
       return
