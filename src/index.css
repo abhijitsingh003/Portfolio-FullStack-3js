@@ -166,10 +166,14 @@ body {
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(6px);
   z-index: 9999;
+
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+
+  padding-top: 30vh; /* 👈 optical center */
 }
+
 
 .mobile-gate-box {
   max-width: 320px;
