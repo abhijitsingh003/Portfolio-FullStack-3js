@@ -64,25 +64,27 @@ export default function App() {
         </nav>
 
         <main className="hero">
-          <span className="role">FULL-STACK DEVELOPER</span>
+          <span className="role"> UI/UX DESIGNER | DEVELOPER</span>
 
           <h1>
-            I craft digital <br />
-            experiences that blend <br />
-            design with code.
+            Hi :) <br />
+            I'm Abhijit <br />
+            
           </h1>
 
           <p>
-            Building polished software and web experiences. Experimenting with
-            magical details in user interfaces. Currently available for freelance
-            projects.
+            I love turning messy ideas into clean, simple design
+            that just make sense.<br/> Drawing inspiration from
+            how people interact with everyday objects,<br/> I find
+            the clues needed to solve complex usability problems.<br/>
+            Open to freelance projects and internships.
           </p>
 
           <div className="socials">
-            <a><Github size={18} /></a>
-            <a><Linkedin size={18} /></a>
-            <a><Twitter size={18} /></a>
-            <a><Mail size={18} /></a>
+            <a href="https://github.com/abhijitsingh003"><Github size={18} /></a>
+            <a href="https://www.linkedin.com/in/abhijitsingh003"><Linkedin size={18} /></a>
+            <a href="https://twitter.com/"><Twitter size={18} /></a>
+            <a href="mailto:abhijit.singh.2k21@gmail.com"><Mail size={18} /></a>
           </div>
         </main>
 
@@ -92,7 +94,7 @@ export default function App() {
         </div>
 
         <div className="color-hint">
-          Click anywhere to change colors
+          Click to explore visual variations
         </div>
       </div>
 
