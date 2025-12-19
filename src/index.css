@@ -159,7 +159,6 @@ body {
   opacity: 0.6;
 }
 
-/* MOBILE GATE */
 .mobile-gate {
   position: fixed;
   inset: 0;
@@ -171,7 +170,7 @@ body {
   justify-content: center;
   align-items: flex-start;
 
-  padding-top: 30vh; /* 👈 optical center */
+  padding-top: env(safe-area-inset-top);
 }
 
 
@@ -182,7 +181,13 @@ body {
   color: #d1d5db;
   font-size: 0.9rem;
   line-height: 1.6;
+
+  /* 🔑 KEY FIX */
+  position: relative;
+  top: 25%;
+  transform: translateY(-10%);
 }
+
 
 .continue-btn {
   margin-top: 20px;
