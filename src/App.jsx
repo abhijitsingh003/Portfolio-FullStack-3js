@@ -120,9 +120,8 @@ export default function App() {
         <div className="mobile-gate">
           <div className="mobile-gate-box">
             <p>
-              Best experienced on a laptop
-              <br />
-              for richer visuals and interactions.
+              This experience isn't fully optimized for mobile yet. <br/>
+              For the best visuals and interactions, try viewing it on a laptop or larger screen.
             </p>
 
             <button
