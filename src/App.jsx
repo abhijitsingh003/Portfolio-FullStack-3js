@@ -73,9 +73,11 @@ export default function App() {
         <nav className="nav">
           <span className="logo">ABHIJIT</span>
           <div className="nav-links">
-            <a>About</a>
-            <a>Work</a>
-            <a>Contact</a>
+            <a href="/Resume%20UIUX.pdf" target="_blank" rel="noopener noreferrer">
+              Resume
+            </a>
+            <a href="https://www.behance.net/abhijitsingh40">Projects</a>
+            <a href="https://medium.com/@abhijit.singh.2k21">Drafts</a>
           </div>
         </nav>
 
@@ -104,10 +106,10 @@ export default function App() {
           </div>
         </main>
 
-        <div className="scroll">
+        {/* <div className="scroll">
           <span>SCROLL</span>
           <span className="arrow">↓</span>
-        </div>
+        </div> */}
 
         <div className="color-hint">
           Tap / click anywhere to change colors
