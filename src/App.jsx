@@ -7,15 +7,23 @@ export default function App() {
   const appRef = useRef(null)
   const [dismissGate, setDismissGate] = useState(false)
 
-  const randomColors = (count) =>
-    new Array(count).fill(0).map(
-      () =>
-        "#" +
-        Math.floor(Math.random() * 16777215)
-          .toString(16)
-          .padStart(6, "0")
-    )
+  /* ------------------------------
+     ANDROID VIEWPORT HEIGHT FIX
+  -------------------------------- */
+  useEffect(() => {
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty("--vh", `${vh}px`)
+    }
 
+    setVH()
+    window.addEventListener("resize", setVH)
+    return () => window.removeEventListener("resize", setVH)
+  }, [])
+
+  /* ------------------------------
+     THREE.JS TUBES EFFECT
+  -------------------------------- */
   useEffect(() => {
     const timer = setTimeout(() => {
       import(
@@ -42,14 +50,8 @@ export default function App() {
     }
   }, [])
 
-  const handleClick = () => {
-    if (!appRef.current) return
-    appRef.current.tubes.setColors(randomColors(3))
-    appRef.current.tubes.setLightsColors(randomColors(4))
-  }
-
   return (
-    <div className="app" onClick={handleClick}>
+    <div className="app">
       <canvas ref={canvasRef} className="tubes-canvas" />
 
       {/* MAIN UI */}
@@ -68,14 +70,13 @@ export default function App() {
 
           <h1>
             Hi :) <br />
-            I’m Abhijit
+            I'm Abhijit
           </h1>
 
           <p>
-            I love turning messy ideas into clean, simple experiences that just
-            make sense. Inspired by how people interact with everyday things,
+            I love turning messy ideas into clean, simple experiences
+            that just make sense. Inspired by everyday interactions,
             I look for small clues that solve bigger usability problems.
-            <br />
             <br />
             Open to freelance projects and internships.
           </p>
@@ -83,7 +84,7 @@ export default function App() {
           <div className="socials">
             <a href="https://github.com/abhijitsingh003"><Github size={18} /></a>
             <a href="https://www.linkedin.com/in/abhijitsingh003"><Linkedin size={18} /></a>
-            <a href="https://twitter.com/"><Twitter size={18} /></a>
+            <a href="#"><Twitter size={18} /></a>
             <a href="mailto:abhijit.singh.2k21@gmail.com"><Mail size={18} /></a>
           </div>
         </main>
@@ -98,14 +99,14 @@ export default function App() {
         </div>
       </div>
 
-      {/* MOBILE EXPERIENCE GATE */}
+      {/* MOBILE POPUP */}
       {!dismissGate && (
         <div className="mobile-gate">
           <div className="mobile-gate-box">
             <p>
-              This experience isn't fully optimized for mobile yet.
-              For the best visuals and interactions,
-              try viewing it on a laptop or larger screen.
+              This experience isn’t fully optimized for mobile yet.
+              For the best visuals and interactions, try opening it
+              on a laptop or larger screen.
             </p>
 
             <button
