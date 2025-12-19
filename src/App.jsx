@@ -4,58 +4,68 @@ import { Github, Linkedin, Twitter, Mail, ArrowRight } from "lucide-react"
 
 export default function App() {
   const canvasRef = useRef(null)
-  const appRef = useRef(null)
-  const [dismissGate, setDismissGate] = useState(false)
+  const tubesRef = useRef(null)
 
-  const randomColors = (count) =>
-    new Array(count).fill(0).map(
-      () =>
-        "#" +
-        Math.floor(Math.random() * 16777215)
-          .toString(16)
-          .padStart(6, "0")
-    )
+  const [showGate, setShowGate] = useState(false)
 
+  // Detect mobile ONCE on load
   useEffect(() => {
-    const timer = setTimeout(() => {
-      import(
-        "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js"
-      ).then((module) => {
-        const Tubes = module.default
-        if (canvasRef.current) {
-          appRef.current = Tubes(canvasRef.current, {
-            tubes: {
-              colors: ["#5e72e4", "#8965e0", "#f5365c"],
-              lights: {
-                intensity: 200,
-                colors: ["#21d4fd", "#b721ff", "#f4d03f", "#11cdef"],
-              },
-            },
-          })
-        }
-      })
-    }, 100)
-
-    return () => {
-      clearTimeout(timer)
-      appRef.current?.dispose?.()
+    if (window.innerWidth < 768) {
+      setShowGate(true)
     }
   }, [])
 
+  // Random color generator
+  const randomColors = (count) =>
+    Array.from({ length: count }, () =>
+      "#" +
+      Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, "0")
+    )
+
+  // Load Three.js Tubes
+  useEffect(() => {
+    let mounted = true
+
+    import(
+      "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js"
+    ).then((module) => {
+      if (!mounted || !canvasRef.current) return
+
+      const Tubes = module.default
+      tubesRef.current = Tubes(canvasRef.current, {
+        tubes: {
+          colors: ["#5e72e4", "#8965e0", "#f5365c"],
+          lights: {
+            intensity: 200,
+            colors: ["#21d4fd", "#b721ff", "#f4d03f", "#11cdef"],
+          },
+        },
+      })
+    })
+
+    return () => {
+      mounted = false
+      tubesRef.current?.dispose?.()
+    }
+  }, [])
+
+  // Change colors on click
   const handleClick = () => {
-    if (!appRef.current) return
-    appRef.current.tubes.setColors(randomColors(3))
-    appRef.current.tubes.setLightsColors(randomColors(4))
+    if (!tubesRef.current) return
+    tubesRef.current.tubes.setColors(randomColors(3))
+    tubesRef.current.tubes.setLightsColors(randomColors(4))
   }
 
   return (
     <div className="app" onClick={handleClick}>
       <canvas ref={canvasRef} className="tubes-canvas" />
 
-      {/* MAIN UI */}
+      {/* UI */}
       <div className="ui">
         <nav className="nav">
-          <span className="logo">ABHIJIT</span>
+          <span className="logo">ABHIJIT SINGH</span>
           <div className="nav-links">
             <a>About</a>
             <a>Work</a>
@@ -68,15 +78,14 @@ export default function App() {
 
           <h1>
             Hi :) <br />
-            I&apos;m Abhijit
+            I'm Abhijit
           </h1>
 
           <p>
-            I love turning messy ideas into clean, simple design
-            that just makes sense.<br />
-            Drawing inspiration from how people interact with
-            everyday objects, I find the clues needed to solve
-            complex usability problems.<br />
+            I love turning messy ideas into clean, simple experiences
+            that just make sense. <br />
+            I draw inspiration from how people interact with everyday
+            objects to solve usability problems. <br />
             Open to freelance projects and internships.
           </p>
 
@@ -106,8 +115,8 @@ export default function App() {
         </div>
       </div>
 
-      {/* MOBILE EXPERIENCE POPUP */}
-      {!dismissGate && (
+      {/* MOBILE EXPERIENCE GATE */}
+      {showGate && (
         <div className="mobile-gate">
           <div className="mobile-gate-box">
             <p>
@@ -120,7 +129,7 @@ export default function App() {
               className="continue-btn"
               onClick={(e) => {
                 e.stopPropagation()
-                setDismissGate(true)
+                setShowGate(false)
               }}
             >
               Continue anyway <ArrowRight size={14} />

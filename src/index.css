@@ -21,7 +21,7 @@ body {
   cursor: pointer;
 }
 
-/* BACKGROUND CANVAS */
+/* BACKGROUND */
 .tubes-canvas {
   position: fixed;
   inset: 0;
@@ -39,7 +39,7 @@ body {
   color: #ffffff;
 }
 
-/* NAVBAR */
+/* NAV */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -134,14 +134,12 @@ body {
 
 .scroll .arrow {
   font-size: 1.4rem;
-  font-weight: 600;
   color: #ffffff;
   animation: bounce 1.4s ease-in-out infinite;
 }
 
 @keyframes bounce {
-  0%,
-  100% {
+  0%, 100% {
     transform: translateY(0);
     opacity: 0.6;
   }
@@ -151,7 +149,7 @@ body {
   }
 }
 
-/* BOTTOM-RIGHT HINT */
+/* COLOR HINT */
 .color-hint {
   position: absolute;
   bottom: 32px;
@@ -159,31 +157,18 @@ body {
   font-size: 0.7rem;
   color: #9ca3af;
   opacity: 0.6;
-  letter-spacing: 0.04em;
-  pointer-events: none;
 }
 
-/* ============================= */
-/* MOBILE EXPERIENCE POPUP GATE */
-/* ============================= */
-
-/* Hidden on desktop */
+/* MOBILE GATE */
 .mobile-gate {
-  display: none;
-}
-
-/* Visible ONLY on mobile */
-@media (max-width: 768px) {
-  .mobile-gate {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.88);
-    backdrop-filter: blur(6px);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .mobile-gate-box {
