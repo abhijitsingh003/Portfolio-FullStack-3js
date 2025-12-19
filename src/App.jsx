@@ -4,68 +4,58 @@ import { Github, Linkedin, Twitter, Mail, ArrowRight } from "lucide-react"
 
 export default function App() {
   const canvasRef = useRef(null)
-  const tubesRef = useRef(null)
+  const appRef = useRef(null)
+  const [dismissGate, setDismissGate] = useState(false)
 
-  const [showGate, setShowGate] = useState(false)
-
-  // Detect mobile ONCE on load
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setShowGate(true)
-    }
-  }, [])
-
-  // Random color generator
   const randomColors = (count) =>
-    Array.from({ length: count }, () =>
-      "#" +
-      Math.floor(Math.random() * 16777215)
-        .toString(16)
-        .padStart(6, "0")
+    new Array(count).fill(0).map(
+      () =>
+        "#" +
+        Math.floor(Math.random() * 16777215)
+          .toString(16)
+          .padStart(6, "0")
     )
 
-  // Load Three.js Tubes
   useEffect(() => {
-    let mounted = true
-
-    import(
-      "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js"
-    ).then((module) => {
-      if (!mounted || !canvasRef.current) return
-
-      const Tubes = module.default
-      tubesRef.current = Tubes(canvasRef.current, {
-        tubes: {
-          colors: ["#5e72e4", "#8965e0", "#f5365c"],
-          lights: {
-            intensity: 200,
-            colors: ["#21d4fd", "#b721ff", "#f4d03f", "#11cdef"],
-          },
-        },
+    const timer = setTimeout(() => {
+      import(
+        "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js"
+      ).then((module) => {
+        const Tubes = module.default
+        if (canvasRef.current) {
+          appRef.current = Tubes(canvasRef.current, {
+            tubes: {
+              colors: ["#5e72e4", "#8965e0", "#f5365c"],
+              lights: {
+                intensity: 200,
+                colors: ["#21d4fd", "#b721ff", "#f4d03f", "#11cdef"],
+              },
+            },
+          })
+        }
       })
-    })
+    }, 100)
 
     return () => {
-      mounted = false
-      tubesRef.current?.dispose?.()
+      clearTimeout(timer)
+      appRef.current?.dispose?.()
     }
   }, [])
 
-  // Change colors on click
   const handleClick = () => {
-    if (!tubesRef.current) return
-    tubesRef.current.tubes.setColors(randomColors(3))
-    tubesRef.current.tubes.setLightsColors(randomColors(4))
+    if (!appRef.current) return
+    appRef.current.tubes.setColors(randomColors(3))
+    appRef.current.tubes.setLightsColors(randomColors(4))
   }
 
   return (
     <div className="app" onClick={handleClick}>
       <canvas ref={canvasRef} className="tubes-canvas" />
 
-      {/* UI */}
+      {/* MAIN UI */}
       <div className="ui">
         <nav className="nav">
-          <span className="logo">ABHIJIT SINGH</span>
+          <span className="logo">ABHIJIT</span>
           <div className="nav-links">
             <a>About</a>
             <a>Work</a>
@@ -78,30 +68,23 @@ export default function App() {
 
           <h1>
             Hi :) <br />
-            I'm Abhijit
+            I’m Abhijit
           </h1>
 
           <p>
-            I love turning messy ideas into clean, simple experiences
-            that just make sense. <br />
-            I draw inspiration from how people interact with everyday
-            objects to solve usability problems. <br />
+            I love turning messy ideas into clean, simple experiences that just
+            make sense. Inspired by how people interact with everyday things,
+            I look for small clues that solve bigger usability problems.
+            <br />
+            <br />
             Open to freelance projects and internships.
           </p>
 
           <div className="socials">
-            <a href="https://github.com/abhijitsingh003" target="_blank">
-              <Github size={18} />
-            </a>
-            <a href="https://www.linkedin.com/in/abhijitsingh003" target="_blank">
-              <Linkedin size={18} />
-            </a>
-            <a href="https://twitter.com/" target="_blank">
-              <Twitter size={18} />
-            </a>
-            <a href="mailto:abhijit.singh.2k21@gmail.com">
-              <Mail size={18} />
-            </a>
+            <a href="https://github.com/abhijitsingh003"><Github size={18} /></a>
+            <a href="https://www.linkedin.com/in/abhijitsingh003"><Linkedin size={18} /></a>
+            <a href="https://twitter.com/"><Twitter size={18} /></a>
+            <a href="mailto:abhijit.singh.2k21@gmail.com"><Mail size={18} /></a>
           </div>
         </main>
 
@@ -116,19 +99,21 @@ export default function App() {
       </div>
 
       {/* MOBILE EXPERIENCE GATE */}
-      {showGate && (
+      {!dismissGate && (
         <div className="mobile-gate">
           <div className="mobile-gate-box">
             <p>
-              This experience isn't fully optimized for mobile yet.
-              For the best visuals and interactions, try viewing it on a laptop or larger screen.
-            </p> <br/>
+              This experience isn’t fully optimized for mobile yet.
+              <br />
+              For the best visuals and interactions,
+              try viewing it on a laptop or larger screen.
+            </p>
 
             <button
               className="continue-btn"
               onClick={(e) => {
                 e.stopPropagation()
-                setShowGate(false)
+                setDismissGate(true)
               }}
             >
               Continue anyway <ArrowRight size={14} />
