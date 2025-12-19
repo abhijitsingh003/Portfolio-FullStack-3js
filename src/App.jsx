@@ -5,7 +5,7 @@ import { Github, Linkedin, Twitter, Mail, ArrowRight } from "lucide-react"
 export default function App() {
   const canvasRef = useRef(null)
   const appRef = useRef(null)
-  const [showMobileGate, setShowMobileGate] = useState(false)
+  const [dismissGate, setDismissGate] = useState(false)
 
   const randomColors = (count) =>
     new Array(count).fill(0).map(
@@ -17,20 +17,6 @@ export default function App() {
     )
 
   useEffect(() => {
-    const isTouchDevice =
-      "ontouchstart" in window || navigator.maxTouchPoints > 0
-
-    const isMobileUA = /Android|iPhone|iPad|iPod/i.test(
-      navigator.userAgent
-    )
-
-    const isMobile = isTouchDevice && isMobileUA
-
-    if (isMobile) {
-      setShowMobileGate(true)
-      return
-    }
-
     const timer = setTimeout(() => {
       import(
         "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js"
@@ -110,8 +96,8 @@ export default function App() {
         </div>
       </div>
 
-      {/* MOBILE POPUP */}
-      {showMobileGate && (
+      {/* MOBILE POPUP (CSS controls visibility) */}
+      {!dismissGate && (
         <div className="mobile-gate">
           <div className="mobile-gate-box">
             <p>
@@ -123,7 +109,7 @@ export default function App() {
               className="continue-btn"
               onClick={(e) => {
                 e.stopPropagation()
-                setShowMobileGate(false)
+                setDismissGate(true)
               }}
             >
               Continue anyway <ArrowRight size={14} />

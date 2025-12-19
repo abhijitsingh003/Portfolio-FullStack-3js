@@ -152,27 +152,39 @@ body {
   }
 }
 
-/* BOTTOM-RIGHT HINT (ALIGNED WITH NAV LINKS) */
+/* BOTTOM-RIGHT HINT */
 .color-hint {
   position: absolute;
   bottom: 32px;
-  right: 64px; /* 👈 SAME AS NAV PADDING */
+  right: 64px;
   font-size: 0.7rem;
   color: #9ca3af;
   opacity: 0.6;
   letter-spacing: 0.04em;
   pointer-events: none;
 }
-/* MOBILE EXPERIENCE GATE */
+
+/* ============================= */
+/* MOBILE EXPERIENCE POPUP GATE */
+/* ============================= */
+
+/* Hidden by default (desktop) */
 .mobile-gate {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(6px);
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: none;
+}
+
+/* Force popup on mobile */
+@media (max-width: 768px) {
+  .mobile-gate {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .mobile-gate-box {
