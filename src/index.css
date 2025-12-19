@@ -1,4 +1,6 @@
+/* ========================= */
 /* RESET */
+/* ========================= */
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +16,9 @@ body {
   overflow-x: hidden;
 }
 
+/* ========================= */
+/* APP WRAPPER */
+/* ========================= */
 .app {
   position: relative;
   width: 100%;
@@ -21,7 +26,9 @@ body {
   cursor: pointer;
 }
 
-/* BACKGROUND */
+/* ========================= */
+/* BACKGROUND CANVAS */
+/* ========================= */
 .tubes-canvas {
   position: fixed;
   inset: 0;
@@ -31,7 +38,9 @@ body {
   pointer-events: none;
 }
 
+/* ========================= */
 /* UI LAYER */
+/* ========================= */
 .ui {
   position: relative;
   z-index: 2;
@@ -39,7 +48,9 @@ body {
   color: #ffffff;
 }
 
-/* NAV */
+/* ========================= */
+/* NAVBAR */
+/* ========================= */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -68,7 +79,9 @@ body {
   color: #ffffff;
 }
 
+/* ========================= */
 /* HERO */
+/* ========================= */
 .hero {
   min-height: calc(100vh - 120px);
   padding: 0 64px;
@@ -99,7 +112,9 @@ body {
   margin-bottom: 32px;
 }
 
-/* SOCIALS */
+/* ========================= */
+/* SOCIAL ICONS */
+/* ========================= */
 .socials {
   display: flex;
   gap: 24px;
@@ -117,7 +132,9 @@ body {
   opacity: 1;
 }
 
-/* SCROLL */
+/* ========================= */
+/* SCROLL INDICATOR */
+/* ========================= */
 .scroll {
   position: absolute;
   bottom: 32px;
@@ -134,12 +151,14 @@ body {
 
 .scroll .arrow {
   font-size: 1.4rem;
+  font-weight: 600;
   color: #ffffff;
   animation: bounce 1.4s ease-in-out infinite;
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
     opacity: 0.6;
   }
@@ -149,7 +168,9 @@ body {
   }
 }
 
-/* COLOR HINT */
+/* ========================= */
+/* BOTTOM RIGHT HINT */
+/* ========================= */
 .color-hint {
   position: absolute;
   bottom: 32px;
@@ -157,47 +178,66 @@ body {
   font-size: 0.7rem;
   color: #9ca3af;
   opacity: 0.6;
+  letter-spacing: 0.04em;
+  pointer-events: none;
 }
 
+/* ================================================= */
+/* MOBILE EXPERIENCE POPUP (FINAL FIX – STABLE) */
+/* ================================================= */
+
+/* Hidden by default (desktop) */
 .mobile-gate {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(6px);
-  z-index: 9999;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-
-  padding-top: env(safe-area-inset-top);
+  display: none;
 }
 
+/* Mobile-only popup */
+@media (max-width: 768px) {
+  .mobile-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    /* ✅ Grid centering = consistent across devices */
+    display: grid;
+    place-items: center;
+
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+
+    /* ✅ iOS notch / safe-area fix */
+    padding:
+      env(safe-area-inset-top)
+      env(safe-area-inset-right)
+      env(safe-area-inset-bottom)
+      env(safe-area-inset-left);
+  }
+}
 
 .mobile-gate-box {
   max-width: 320px;
   padding: 32px;
   text-align: center;
+
   color: #d1d5db;
   font-size: 0.9rem;
   line-height: 1.6;
 
-  /* 🔑 KEY FIX */
-  position: relative;
-  top: 25%;
-  transform: translateY(-10%);
+  /* subtle visual balance */
+  transform: translateY(-4vh);
 }
 
-
 .continue-btn {
-  margin-top: 20px;
+  margin-top: 24px;
   background: none;
   border: none;
   color: #9ca3af;
   font-size: 0.85rem;
+
   display: inline-flex;
   align-items: center;
   gap: 6px;
+
   cursor: pointer;
   transition: color 0.25s ease, transform 0.25s ease;
 }
