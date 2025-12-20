@@ -71,7 +71,7 @@ export default function App() {
       {/* MAIN UI */}
       <div className="ui">
         <nav className="nav">
-          <span className="logo">ABHIJIT</span>
+          <span className="logo">ABHIJIT SINGH</span>
           <div className="nav-links">
             <a href="/Resume%20UIUX.pdf" target="_blank" rel="noopener noreferrer">
               Resume
